@@ -1,0 +1,49 @@
+<div class="uk-grid-match uk-grid-small"
+     uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 200;"
+     uk-grid>
+
+  <div class="uk-grid-match uk-grid-medium petitions"
+       uk-grid>
+
+    <div
+      *ngFor="let petition of this.topPetitions; index as i;"
+      class="uk-width-1@s uk-width-1-2@m top-card">
+      <div class="uk-card uk-card-default">
+
+        <div class="uk-card-header">
+          <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+              <h3 class="uk-card-title uk-margin-remove-bottom">{{petition.title}}</h3>
+              <p class="uk-text-meta uk-margin-remove-top">{{petition.datetime_created | date}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="uk-card-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae corporis dignissimos et fugit ipsum maxime
+            modi nam nostrum quae similique! Autem, dolor dolorum nihil nostrum pariatur quas reprehenderit repudiandae
+            voluptate!</p>
+          <p>
+            <small>
+              Category: {{petition.category}}
+            </small>
+          </p>
+          <p>
+            <small>
+              Author: {{petition.creator_name}}
+            </small>
+          </p>
+        </div>
+
+        <div class="uk-card-footer">
+          <a [routerLink]="['/petitions', petition.id]" class="uk-button uk-button-text">Read more</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+

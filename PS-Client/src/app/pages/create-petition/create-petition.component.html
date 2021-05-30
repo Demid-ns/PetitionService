@@ -1,0 +1,127 @@
+<div class="uk-container uk-container-large petition-container">
+
+  <form class="uk-form-stacked" [formGroup]="form" (ngSubmit)="submit()">
+    <fieldset class="uk-fieldset">
+
+      <legend class="uk-legend">Input petition information</legend>
+      <hr class="uk-margin">
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="petitionName">Petition name</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="text"
+            id="petitionName"
+            placeholder="Input petition name" formControlName="petitionName">
+        </div>
+        <div
+          *ngIf="form.get('petitionName').invalid && form.get('petitionName').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('petitionName').errors.required">
+            Petition name cannot be empty
+          </small>
+          <small *ngIf="form.get('petitionName').errors.minlength">
+            Petition name must be at least 10 characters
+          </small>
+          <small *ngIf="form.get('petitionName').errors.maxlength">
+            Petition name must be less then 50 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="categoryName"
+        >Category</label>
+        <div class="uk-form-controls">
+          <select class="uk-select" id="categoryName" formControlName="categoryName">
+            <option
+              *ngFor="let category of this.categories;" [ngValue]="category.id">
+              {{category.name}}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="form.get('categoryName').invalid && form.get('categoryName').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('categoryName').errors.required">
+            Category cannot be empty
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="description">Short description</label>
+        <div class="uk-form-controls">
+          <textarea
+            class="uk-textarea"
+            rows="5"
+            id="description"
+            placeholder="Input short description of the petition"
+            formControlName="description"></textarea>
+        </div>
+        <div
+          *ngIf="form.get('description').invalid && form.get('description').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('description').errors.required">
+            Petition name cannot be empty
+          </small>
+          <small *ngIf="form.get('description').errors.minlength">
+            Petition name must be at least 10 characters
+          </small>
+          <small *ngIf="form.get('description').errors.maxlength">
+            Petition name must be less then 300 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="text">Full description</label>
+        <div class="uk-form-controls">
+          <textarea
+            class="uk-textarea"
+            rows="10"
+            id="text"
+            placeholder="Input full description of the petition"
+            formControlName="text"></textarea>
+        </div>
+        <div
+          *ngIf="form.get('text').invalid && form.get('text').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('text').errors.required">
+            Petition name cannot be empty
+          </small>
+          <small *ngIf="form.get('text').errors.minlength">
+            Petition name must be at least 10 characters
+          </small>
+          <small *ngIf="form.get('text').errors.maxlength">
+            Petition name must be less then 2000 characters
+          </small>
+        </div>
+      </div>
+
+      <ul class="uk-list uk-list-bullet">
+        <li><p>Hint! This petition will be opened in {{this.createDate | date}} and closed in {{this.expireDate | date}}
+          !</p></li>
+        <li><p>Hint! This petition should get 200 votes to be accepted!</p></li>
+      </ul>
+
+      <button type="submit" class="uk-button uk-button-secondary uk-button-large" [disabled]="form.invalid || form.pending">Create petition</button>
+
+    </fieldset>
+  </form>
+
+</div>
+
+

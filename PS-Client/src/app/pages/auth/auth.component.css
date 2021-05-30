@@ -1,0 +1,18 @@
+.petition-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+input.ng-invalid.ng-touched {
+  color: #f0506e;
+  border: 1px solid #f0506e;
+}
+
+input.ng-valid.ng-touched {
+  color: #32d296;
+  border: 1px solid #32d296;
+}
+
+.google-svg{
+  margin-right: 10px;
+}

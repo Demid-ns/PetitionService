@@ -1,0 +1,8 @@
+.petition-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.uk-tab > .uk-active > a {
+  border-color: black;
+}

@@ -1,0 +1,72 @@
+<div class="uk-container uk-container-large petition-container">
+  <ul uk-tab>
+    <li><a (click)="activateInformation()">Petition information</a></li>
+    <li><a (click)="activateParticipating()">Participating</a></li>
+    <li><a (click)="activateSupport()">Support</a></li>
+  </ul>
+
+  <article *ngIf="informationActivated" class="uk-article">
+
+    <h1 class="uk-article-title"><a class="uk-link-reset">{{this.petition?.title}}</a></h1>
+
+    <p class="uk-article-meta">Created by {{this.petition?.creator_name}}
+      on {{this.petition?.datetime_created | date}}</p>
+
+    <p class="uk-text-lead">{{this.petition?.description}}</p>
+
+    <p>{{this.petition?.text}}</p>
+
+    <div class="uk-overflow-auto">
+      <table class="uk-table uk-table-small uk-table-divider">
+        <thead>
+        <tr>
+          <th>Theme</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Category</td>
+          <td>{{this.petition?.category}}</td>
+        </tr>
+        <tr>
+          <td>Author</td>
+          <td>{{this.petition?.creator_name}}</td>
+        </tr>
+        <tr>
+          <td>Vote count</td>
+          <td>{{this.petition?.vote_count}}/200</td>
+        </tr>
+        <tr>
+          <td>Created date</td>
+          <td>{{this.petition?.datetime_created | date}}</td>
+        </tr>
+        <tr>
+          <td>Expiration date</td>
+          <td>{{this.petition?.datetime_expires | date}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </article>
+
+  <article *ngIf="participatingActivated" class="uk-article">
+
+    <p class="uk-text-lead">List of persons who supported this petition:</p>
+    <ul class="uk-list uk-list-divider">
+      <li *ngFor="let user of this.votedUsers">
+        {{user.full_name}}
+      </li>
+    </ul>
+
+  </article>
+
+  <article *ngIf="supportActivated" class="uk-article">
+
+    <p class="uk-text-lead">Support this petition, it has already get {{this.petition.vote_count}}/200 votes:</p>
+    <button class="uk-button uk-button-secondary">Support petition</button>
+
+  </article>
+
+</div>

@@ -1,0 +1,35 @@
+.petition-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+input.ng-invalid.ng-touched {
+  color: #f0506e;
+  border: 1px solid #f0506e;
+}
+
+input.ng-valid.ng-touched {
+  color: #32d296;
+  border: 1px solid #32d296;
+}
+
+select.ng-invalid.ng-touched {
+  color: #f0506e;
+  border: 1px solid #f0506e;
+}
+
+select.ng-valid{
+  color: #32d296;
+  border: 1px solid #32d296;
+}
+
+textarea.ng-invalid.ng-touched {
+  color: #f0506e;
+  border: 1px solid #f0506e;
+}
+
+textarea.ng-valid.ng-touched {
+  color: #32d296;
+  border: 1px solid #32d296;
+}
+

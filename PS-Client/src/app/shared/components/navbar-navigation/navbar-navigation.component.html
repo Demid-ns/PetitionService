@@ -1,0 +1,17 @@
+<ul class="uk-navbar-nav">
+  <li>
+    <a class="uk-navbar-toggle navbar-logo" href="#">
+      <span uk-navbar-toggle-icon></span>
+    </a>
+    <div uk-dropdown>
+      <ul class="uk-nav uk-dropdown-nav">
+        <li class="uk-nav-header">Navigation</li>
+        <li><a routerLink="/dashboard" [routerLinkActive]="['nav-active']">Dashboard</a></li>
+        <li><a routerLink="/petitions" [routerLinkActive]="['nav-active']">Petitions</a></li>
+        <li><a routerLink="/create" [routerLinkActive]="['nav-active']">Create petition</a></li>
+        <li class="uk-nav-divider"></li>
+        <li routerLink="/auth" [routerLinkActive]="['nav-active']"><a >Sign in / sign up</a></li>
+      </ul>
+    </div>
+  </li>
+</ul>

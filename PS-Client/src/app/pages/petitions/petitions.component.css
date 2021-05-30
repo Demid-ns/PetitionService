@@ -1,0 +1,33 @@
+.search-panel {
+  margin-top: 20px;
+}
+
+.petition-container {
+  margin-top: 20px;
+}
+
+.petitions {
+  margin-top: 40px;
+}
+
+.top-divider {
+  margin-top: 5px;
+}
+
+.bottom-divider{
+  margin-top: 40px;
+}
+
+.pagination {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.no-text {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.statistics {
+  margin-top: 35px;
+}

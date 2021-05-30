@@ -1,0 +1,95 @@
+<div class="uk-container uk-container-large petition-container">
+
+  <form class="uk-form-stacked" [formGroup]="form" (ngSubmit)="submit()">
+    <fieldset class="uk-fieldset">
+
+      <legend class="uk-legend">Sign in</legend>
+      <hr class="uk-margin">
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="login">Login</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="text"
+            id="login"
+            placeholder="Input your login" formControlName="login">
+        </div>
+        <div
+          *ngIf="form.get('login').invalid && form.get('login').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('login').errors.required">
+            Login cannot be empty
+          </small>
+          <small *ngIf="form.get('login').errors.minlength">
+            Login must be at least 4 characters
+          </small>
+          <small *ngIf="form.get('login').errors.maxlength">
+            Login must be less then 16 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="password">Password</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="text"
+            id="password"
+            placeholder="Input your password" formControlName="password">
+        </div>
+        <div
+          *ngIf="form.get('password').invalid && form.get('password').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('password').errors.required">
+            Password cannot be empty
+          </small>
+          <small *ngIf="form.get('password').errors.minlength">
+            Password must be at least 6 characters
+          </small>
+          <small *ngIf="form.get('password').errors.maxlength">
+            Password must be less then 16 characters
+          </small>
+        </div>
+      </div>
+
+      <p uk-margin>
+        <button type="submit" class="uk-button uk-button-secondary" [disabled]="form.invalid || form.pending">Sign in
+        </button>
+      </p>
+
+      <p>
+        <span class="google-svg">
+          <img height="10" width="10" src="assets/svg/pictures-geometry-svgrepo-com.svg" uk-svg>
+        </span>
+        <button class="uk-button uk-button-text" (click)="signUp()">
+          Sign up
+        </button>
+      </p>
+      <p>
+        <span class="google-svg">
+          <img height="10" width="10" src="assets/svg/google-svgrepo-com.svg" uk-svg>
+        </span>
+        <button class="uk-button uk-button-text" (click)="signByGoogle()">
+          Sign in by Google
+        </button>
+      </p>
+      <p>
+        <span class="google-svg">
+          <img height="10" width="10" src="assets/svg/facebook-svgrepo-com.svg" uk-svg>
+        </span>
+        <button class="uk-button uk-button-text" (click)="signByFacebook()">
+          Sign in by Facebook
+        </button>
+      </p>
+
+
+    </fieldset>
+  </form>
+
+</div>

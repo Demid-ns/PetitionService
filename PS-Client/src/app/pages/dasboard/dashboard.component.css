@@ -1,0 +1,21 @@
+.page-size{
+  height: 2500px;
+  background: red;
+}
+
+.top-divider{
+  margin-top: 25px;
+}
+
+.bottom-divider{
+  margin-top: 25px;
+}
+
+.create-petition{
+  margin-top: 45px;
+  margin-bottom: 40px;
+}
+
+.footer-label{
+  font-size: 0.8rem;
+}

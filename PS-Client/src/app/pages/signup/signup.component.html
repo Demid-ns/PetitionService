@@ -1,0 +1,141 @@
+<div class="uk-container uk-container-large petition-container">
+
+  <form class="uk-form-stacked" [formGroup]="form" (ngSubmit)="submit()">
+    <fieldset class="uk-fieldset">
+
+      <legend class="uk-legend">Sign up</legend>
+      <hr class="uk-margin">
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="login">Register login</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="text"
+            id="login"
+            placeholder="Input register login" formControlName="login">
+        </div>
+        <div
+          *ngIf="form.get('login').invalid && form.get('login').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('login').errors.required">
+            Login cannot be empty
+          </small>
+          <small *ngIf="form.get('login').errors.minlength">
+            Login must be at least 4 characters
+          </small>
+          <small *ngIf="form.get('login').errors.maxlength">
+            Login must be less then 16 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="firstName">First name</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="text"
+            id="firstName"
+            placeholder="Input your first name" formControlName="firstName">
+        </div>
+        <div
+          *ngIf="form.get('firstName').invalid && form.get('firstName').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('firstName').errors.required">
+            First cannot be empty
+          </small>
+          <small *ngIf="form.get('firstName').errors.maxlength">
+            First name must be less then 15 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="lastName">Last name</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="text"
+            id="lastName"
+            placeholder="Input your last name" formControlName="lastName">
+        </div>
+        <div
+          *ngIf="form.get('lastName').invalid && form.get('lastName').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('lastName').errors.required">
+            Last name cannot be empty
+          </small>
+          <small *ngIf="form.get('lastName').errors.maxlength">
+            Last name be less then 20 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="password">Password</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="password"
+            id="password"
+            placeholder="Input your password" formControlName="password">
+        </div>
+        <div
+          *ngIf="form.get('password').invalid && form.get('password').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('password').errors.required">
+            Password cannot be empty
+          </small>
+          <small *ngIf="form.get('password').errors.minlength">
+            Password must be at least 6 characters
+          </small>
+          <small *ngIf="form.get('password').errors.maxlength">
+            Password must be less then 16 characters
+          </small>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="password">Password confirm</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="password"
+            id="password-confirm"
+            placeholder="Input your password again" formControlName="passwordConfirm">
+        </div>
+        <div
+          *ngIf="form.get('passwordConfirm').invalid && form.get('passwordConfirm').touched"
+          class="validation"
+        >
+          <small *ngIf="form.get('passwordConfirm').errors.required">
+            Password confirm cannot be empty
+          </small>
+          <small *ngIf="form.get('passwordConfirm').errors.minlength">
+            Password confirm must be at least 6 characters
+          </small>
+          <small *ngIf="form.get('passwordConfirm').errors.maxlength">
+            Password confirm must be less then 16 characters
+          </small>
+        </div>
+      </div>
+
+      <p uk-margin>
+        <button type="submit" class="uk-button uk-button-secondary" [disabled]="form.invalid || form.pending">Sign in
+        </button>
+      </p>
+
+    </fieldset>
+  </form>
+
+</div>

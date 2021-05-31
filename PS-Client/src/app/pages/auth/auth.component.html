@@ -38,7 +38,7 @@
           for="password">Password</label>
         <div class="uk-form-controls">
           <input
-            class="uk-input" type="text"
+            class="uk-input" type="password"
             id="password"
             placeholder="Input your password" formControlName="password">
         </div>
@@ -63,33 +63,31 @@
         </button>
       </p>
 
-      <p>
-        <span class="google-svg">
-          <img height="10" width="10" src="assets/svg/pictures-geometry-svgrepo-com.svg" uk-svg>
-        </span>
-        <button class="uk-button uk-button-text" (click)="signUp()">
-          Sign up
-        </button>
-      </p>
-      <p>
-        <span class="google-svg">
-          <img height="10" width="10" src="assets/svg/google-svgrepo-com.svg" uk-svg>
-        </span>
-        <button class="uk-button uk-button-text" (click)="signByGoogle()">
-          Sign in by Google
-        </button>
-      </p>
-      <p>
-        <span class="google-svg">
-          <img height="10" width="10" src="assets/svg/facebook-svgrepo-com.svg" uk-svg>
-        </span>
-        <button class="uk-button uk-button-text" (click)="signByFacebook()">
-          Sign in by Facebook
-        </button>
-      </p>
-
-
     </fieldset>
   </form>
 
+  <p>
+    <span class="google-svg">
+      <img height="10" width="10" src="assets/svg/pictures-geometry-svgrepo-com.svg" uk-svg>
+    </span>
+    <button (click)="signUp()" class="uk-button uk-button-text">
+      Sign up
+    </button>
+  </p>
+  <p>
+    <span class="google-svg">
+      <img height="10" width="10" src="assets/svg/google-svgrepo-com.svg" uk-svg>
+    </span>
+    <button class="uk-button uk-button-text" (click)="signByGoogle()">
+      Sign in by Google
+    </button>
+  </p>
+  <p>
+    <span class="google-svg">
+      <img height="10" width="10" src="assets/svg/facebook-svgrepo-com.svg" uk-svg>
+    </span>
+    <button class="uk-button uk-button-text" (click)="signByFacebook()">
+      Sign in by Facebook
+    </button>
+  </p>
 </div>

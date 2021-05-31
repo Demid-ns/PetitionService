@@ -15,10 +15,13 @@ export class AuthService {
 
   public makeAuthRequest(redirectUri: string): Observable<any> {
     console.log(`${environment.resApi}/auth/o/google-oauth2/?redirect_uri=${redirectUri}`);
-    return this.http.get<Category[]>(`${environment.resApi}/auth/o/google-oauth2/?redirect_uri=${redirectUri}`);
+    return this.http.get<Category[]>(`${environment.resApi}/auth/o/google-oauth2/?redirect_uri=${redirectUri}`,
+      {withCredentials: true});
   }
 
   public getGoogleJWT(authObject: AuthObject): Observable<any> {
-    return this.http.get<Category[]>(`${environment.resApi}/auth/o/google-oauth2/?code=${authObject.code}&state=dvhpirdxNwSam6UJo6AqCwcn1qG53Y0B`);
+    return this.http.get<Category[]>(`${environment.resApi}/auth/o/google-oauth2/?code=${authObject.code}`
+      + `&state=dvhpirdxNwSam6UJo6AqCwcn1qG53Y0B`,
+      {withCredentials: true});
   }
 }

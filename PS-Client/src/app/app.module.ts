@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PetitionComponent } from './pages/petition/petition.component';
 import { CreatePetitionComponent } from './pages/create-petition/create-petition.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthComponent } from './pages/auth/auth.component';
     PetitionsComponent,
     PetitionComponent,
     CreatePetitionComponent,
-    AuthComponent
+    AuthComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

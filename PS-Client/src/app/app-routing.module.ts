@@ -6,6 +6,7 @@ import {PetitionsComponent} from './pages/petitions/petitions.component';
 import {PetitionComponent} from './pages/petition/petition.component';
 import {CreatePetitionComponent} from './pages/create-petition/create-petition.component';
 import {AuthComponent} from './pages/auth/auth.component';
+import {SignupComponent} from './pages/signup/signup.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
       {path: 'petitions', component: PetitionsComponent},
       {path: 'petitions/:id', component: PetitionComponent},
       {path: 'create', component: CreatePetitionComponent},
-      {path: 'auth', component: AuthComponent}
+      {path: 'auth', component: AuthComponent},
+      {path: 'signup', component: SignupComponent}
     ]
   },
   {path: '**', redirectTo: '', pathMatch: 'full'},

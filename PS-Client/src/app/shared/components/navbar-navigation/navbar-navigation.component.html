@@ -5,12 +5,17 @@
     </a>
     <div uk-dropdown>
       <ul class="uk-nav uk-dropdown-nav">
-        <li class="uk-nav-header">Navigation</li>
+        <li class="uk-nav-header" *ngIf="this.auth.isAuthenticated(); else signOutedNav">Welcome {{this.auth.user.firstName}}!</li>
+        <ng-template #signOutedNav><li class="uk-nav-header">Navigation</li></ng-template>
         <li><a routerLink="/dashboard" [routerLinkActive]="['nav-active']">Dashboard</a></li>
         <li><a routerLink="/petitions" [routerLinkActive]="['nav-active']">Petitions</a></li>
         <li><a routerLink="/create" [routerLinkActive]="['nav-active']">Create petition</a></li>
         <li class="uk-nav-divider"></li>
-        <li routerLink="/auth" [routerLinkActive]="['nav-active']"><a >Sign in / sign up</a></li>
+        <li *ngIf="this.auth.isAuthenticated(); else signOuted"
+            (click)="this.auth.logout()"><a>Sign out</a></li>
+        <ng-template #signOuted>
+          <li routerLink="/auth" [routerLinkActive]="['nav-active']"><a>Sign in / sign up</a></li>
+        </ng-template>
       </ul>
     </div>
   </li>

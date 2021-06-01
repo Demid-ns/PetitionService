@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../shared/services/auth.service';
 import {PlatformLocation} from '@angular/common';
-import {AuthObject} from '../../shared/models/authObject';
 import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../../shared/models/user';
 
 @Component({
   selector: 'app-auth',
@@ -11,9 +11,11 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+  errors: string[];
+
   form: FormGroup = new FormGroup({
     login: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
   });
 
   constructor(private auth: AuthService,
@@ -23,25 +25,28 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const authObject = new AuthObject();
-    authObject.state = this.route.snapshot.queryParamMap.get('state');
-    authObject.code = this.route.snapshot.queryParamMap.get('code')?.replace('/', '%2F');
-    if (authObject.state && authObject.code) {
-      this.auth.getGoogleJWT(authObject).subscribe(response => {
-        console.log(response);
-      });
-    }
 
   }
 
   submit(): void {
-
+    if (this.form.valid) {
+      const user = new User();
+      user.username = this.form.get('login')?.value;
+      user.password = this.form.get('password')?.value;
+      this.auth.login(user).subscribe(response => {
+        console.log(response);
+        this.router.navigate(['/dashboard']);
+      }, error => {
+        this.errors = [];
+        Object.keys(error.error).forEach(p => {
+          this.errors.push(error.error[p]);
+        });
+      });
+    }
   }
 
   signByGoogle(): void {
-    this.auth.makeAuthRequest(this.platformLocation.href).subscribe(response => {
-      console.log(response);
-    });
+    this.auth.loginByGoogle();
   }
 
   signByFacebook(): void {
@@ -51,3 +56,4 @@ export class AuthComponent implements OnInit {
     this.router.navigate(['/signup']);
   }
 }
+

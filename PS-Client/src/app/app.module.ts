@@ -12,10 +12,20 @@ import {environment} from '../environments/environment';
 import {RES_API_URL} from './shared/app-injection-tokens';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { PetitionComponent } from './pages/petition/petition.component';
-import { CreatePetitionComponent } from './pages/create-petition/create-petition.component';
-import { AuthComponent } from './pages/auth/auth.component';
-import { SignupComponent } from './pages/signup/signup.component';
+import {PetitionComponent} from './pages/petition/petition.component';
+import {CreatePetitionComponent} from './pages/create-petition/create-petition.component';
+import {AuthComponent} from './pages/auth/auth.component';
+import {SignupComponent} from './pages/signup/signup.component';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {httpSocialInterceptorProviders} from './shared/interceptors/social-interceptor.service';
+import {JwtModule} from '@auth0/angular-jwt';
+import {DEFAULT_TOKEN_KEY} from './shared/services/auth.service';
+
+const CLIENT_ID = environment.CLIENT_ID;
+
+export function tokenGetter(): string {
+  return localStorage.getItem(DEFAULT_TOKEN_KEY);
+}
 
 @NgModule({
   declarations: [
@@ -35,12 +45,35 @@ import { SignupComponent } from './pages/signup/signup.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SocialLoginModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: environment.tokenAllowedDomains
+      }
+    }),
   ],
   providers: [
+    httpSocialInterceptorProviders,
     {
       provide: RES_API_URL,
       useValue: environment.resApi,
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              CLIENT_ID
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig
     },
   ],
   bootstrap: [AppComponent]

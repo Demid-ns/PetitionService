@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   resApi: 'http://51.116.173.235',
+  CLIENT_ID: '651324120148-b7krj29ds89vv93n73fpt7hgtcen4llr.apps.googleusercontent.com',
+  tokenAllowedDomains: ['51.116.173.235']
 };
 
 /*

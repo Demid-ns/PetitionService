@@ -12,3 +12,7 @@ input.ng-valid.ng-touched {
   color: #32d296;
   border: 1px solid #32d296;
 }
+
+.error{
+  color: #f0506e;
+}

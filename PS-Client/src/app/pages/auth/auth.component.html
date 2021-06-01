@@ -50,13 +50,17 @@
             Password cannot be empty
           </small>
           <small *ngIf="form.get('password').errors.minlength">
-            Password must be at least 6 characters
+            Password must be at least 8 characters
           </small>
           <small *ngIf="form.get('password').errors.maxlength">
             Password must be less then 16 characters
           </small>
         </div>
       </div>
+
+      <ul class="uk-list uk-list-bullet">
+        <li *ngFor="let error of errors" class="error"><p>{{error}}</p></li>
+      </ul>
 
       <p uk-margin>
         <button type="submit" class="uk-button uk-button-secondary" [disabled]="form.invalid || form.pending">Sign in

@@ -16,3 +16,7 @@ input.ng-valid.ng-touched {
 .google-svg{
   margin-right: 10px;
 }
+
+.error{
+  color: #f0506e;
+}

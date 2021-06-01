@@ -56,8 +56,7 @@ export class AuthService {
   }
 
   private setToken(response: AuthResponse): void {
-    console.log(response.access_token);
-    localStorage.setItem(DEFAULT_TOKEN_KEY, response.access_token);
+    localStorage.setItem(DEFAULT_TOKEN_KEY, response.access);
   }
 
   // public makeAuthRequest(redirectUri: string): Observable<any> {

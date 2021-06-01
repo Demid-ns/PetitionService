@@ -51,8 +51,9 @@ export function tokenGetter(): string {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        allowedDomains: environment.tokenAllowedDomains
-      }
+        allowedDomains: environment.tokenAllowedDomains,
+        authScheme: 'JWT '
+      },
     }),
   ],
   providers: [

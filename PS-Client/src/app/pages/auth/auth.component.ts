@@ -50,6 +50,7 @@ export class AuthComponent implements OnInit {
   }
 
   signByFacebook(): void {
+    this.auth.loginByFacebook();
   }
 
   signUp(): void {

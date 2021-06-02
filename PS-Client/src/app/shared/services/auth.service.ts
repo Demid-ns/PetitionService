@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {GoogleLoginProvider, SocialAuthService, SocialUser} from 'angularx-social-login';
+import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser} from 'angularx-social-login';
 import {Router} from '@angular/router';
 import {User} from '../models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
@@ -64,8 +64,18 @@ export class AuthService {
     });
   }
 
+  public loginByFacebook(): any {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((respponse) => {
+      console.log(respponse);
+    });
+  }
+
   private setToken(response: AuthResponse): void {
     localStorage.setItem(DEFAULT_TOKEN_KEY, response.access);
+  }
+
+  public getInfo(): void{
+    console.log(this.user.idToken);
   }
 
   // public makeAuthRequest(redirectUri: string): Observable<any> {

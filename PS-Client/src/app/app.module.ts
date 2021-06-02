@@ -16,13 +16,19 @@ import {PetitionComponent} from './pages/petition/petition.component';
 import {CreatePetitionComponent} from './pages/create-petition/create-petition.component';
 import {AuthComponent} from './pages/auth/auth.component';
 import {SignupComponent} from './pages/signup/signup.component';
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule
+} from 'angularx-social-login';
+
 import {httpSocialInterceptorProviders} from './shared/interceptors/social-interceptor.service';
 import {JwtModule} from '@auth0/angular-jwt';
 import {DEFAULT_TOKEN_KEY} from './shared/services/auth.service';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
-const CLIENT_ID = environment.CLIENT_ID;
+const GOOGLE_CLIENT_ID = environment.GOOGLE_CLIENT_ID;
+const FACEBOOK_CLIENT_ID = environment.FACEBOOK_CLIENT_ID;
 
 export function tokenGetter(): string {
   return localStorage.getItem(DEFAULT_TOKEN_KEY);
@@ -71,8 +77,13 @@ export function tokenGetter(): string {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              CLIENT_ID
+              GOOGLE_CLIENT_ID
             )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(
+              FACEBOOK_CLIENT_ID)
           }
         ]
       } as SocialAuthServiceConfig

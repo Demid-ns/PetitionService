@@ -55,7 +55,7 @@
 #         package: .
         
         
-name: Build and deploy Node.js app to Azure Web App - hello-world-app-to-delete
+name: Build and deploy Node.js app to Azure Web App - PetitionBureau
 
 on:
   push:
@@ -83,6 +83,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'PetitionBureau'
-        slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_fd2b8b35e33242cda16c3b026bc1b8fb }}
-        package: .
+        package: ./dist/PetitionBureau

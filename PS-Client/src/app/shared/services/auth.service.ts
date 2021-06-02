@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Category} from '../models/category';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {GoogleLoginProvider, SocialAuthService, SocialUser} from 'angularx-social-login';
@@ -31,8 +30,12 @@ export class AuthService {
   }
 
   public logout(): any {
-    this.authService.signOut();
-    localStorage.removeItem(SOCIAL_TOKEN_KEY);
+    localStorage.removeItem(DEFAULT_TOKEN_KEY);
+    const token = localStorage.getItem(SOCIAL_TOKEN_KEY);
+    if (token) {
+      this.authService.signOut();
+      localStorage.removeItem(SOCIAL_TOKEN_KEY);
+    }
   }
 
   public login(user: User): Observable<any> {
@@ -43,9 +46,15 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    if (this.user) {
+    const defaultToken = localStorage.getItem(DEFAULT_TOKEN_KEY);
+    if (defaultToken && !this.jwtHelper.isTokenExpired(defaultToken)) {
       return true;
     }
+    if (this.user?.idToken) {
+      return true;
+    }
+
+    return false;
   }
 
   public loginByGoogle(): any {

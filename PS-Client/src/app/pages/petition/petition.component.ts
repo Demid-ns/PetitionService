@@ -3,6 +3,9 @@ import {PetitionService} from '../../shared/services/petition.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Petition} from '../../shared/models/petition';
 import {VotedUser} from '../../shared/models/votedUser';
+import {UserService} from '../../shared/services/user.service';
+import {User} from '../../shared/models/user';
+import {AuthService} from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-petition',
@@ -17,12 +20,16 @@ export class PetitionComponent implements OnInit {
   public participatingActivated = false;
   public supportActivated = false;
 
+  public thisUser: User;
+
   public votedUsers: VotedUser[];
 
   constructor(
     private petitionService: PetitionService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private auth: AuthService
   ) {
   }
 
@@ -40,6 +47,12 @@ export class PetitionComponent implements OnInit {
     this.petitionService.getVotedUsers(this.urlId).subscribe(response => {
       this.votedUsers = response;
     });
+
+    if (this.auth.isAuthenticated()) {
+      this.userService.getUserInfo().subscribe(response => {
+        this.thisUser = response;
+      });
+    }
   }
 
   activateInformation(): void {
@@ -60,4 +73,23 @@ export class PetitionComponent implements OnInit {
     this.supportActivated = true;
   }
 
+  supportPetition(): void {
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['auth', true]);
+    } else {
+      this.petitionService.voteForPetition(this.urlId).subscribe(() => {
+        window.location.reload();
+      });
+    }
+  }
+
+  alreadySupported(): boolean {
+    if (this.auth.isAuthenticated()) {
+      const votedUser = this.votedUsers.filter(user => user.id === this.thisUser.id);
+      if (votedUser.length > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

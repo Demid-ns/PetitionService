@@ -20,6 +20,7 @@ import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'a
 import {httpSocialInterceptorProviders} from './shared/interceptors/social-interceptor.service';
 import {JwtModule} from '@auth0/angular-jwt';
 import {DEFAULT_TOKEN_KEY} from './shared/services/auth.service';
+import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 const CLIENT_ID = environment.CLIENT_ID;
 

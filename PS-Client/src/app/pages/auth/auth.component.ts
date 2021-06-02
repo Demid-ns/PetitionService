@@ -12,6 +12,7 @@ import {User} from '../../shared/models/user';
 })
 export class AuthComponent implements OnInit {
   errors: string[];
+  continue: boolean;
 
   form: FormGroup = new FormGroup({
     login: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]),
@@ -25,7 +26,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.continue = Boolean(this.route.snapshot.paramMap.get('continue'));
   }
 
   submit(): void {
@@ -34,7 +35,6 @@ export class AuthComponent implements OnInit {
       user.username = this.form.get('login')?.value;
       user.password = this.form.get('password')?.value;
       this.auth.login(user).subscribe(response => {
-        console.log(response);
         this.router.navigate(['/dashboard']);
       }, error => {
         this.errors = [];

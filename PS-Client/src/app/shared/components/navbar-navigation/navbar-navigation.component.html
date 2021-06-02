@@ -5,8 +5,7 @@
     </a>
     <div uk-dropdown>
       <ul class="uk-nav uk-dropdown-nav">
-        <li class="uk-nav-header" *ngIf="this.auth.isAuthenticated(); else signOutedNav">Welcome {{this.auth.user.firstName}}!</li>
-        <ng-template #signOutedNav><li class="uk-nav-header">Navigation</li></ng-template>
+        <li class="uk-nav-header">Navigation</li>
         <li><a routerLink="/dashboard" [routerLinkActive]="['nav-active']">Dashboard</a></li>
         <li><a routerLink="/petitions" [routerLinkActive]="['nav-active']">Petitions</a></li>
         <li><a routerLink="/create" [routerLinkActive]="['nav-active']">Create petition</a></li>

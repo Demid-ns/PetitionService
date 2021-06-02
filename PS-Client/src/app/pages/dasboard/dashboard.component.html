@@ -5,11 +5,15 @@
 
 <div class="uk-container uk-container-large">
   <hr class="uk-divider-icon top-divider">
-  <app-top-petitions></app-top-petitions>
+  <div class="top-petitions">
+    <app-top-petitions></app-top-petitions>
+  </div>
   <hr class="bottom-divider">
 
   <div class="create-petition">
-    <button class="uk-button uk-button-secondary uk-button-large uk-align-center">Create your own petition</button>
+    <button
+      [routerLink]="['/create']"
+      class="uk-button uk-button-secondary uk-button-large uk-align-center">Create your own petition</button>
   </div>
 </div>
 

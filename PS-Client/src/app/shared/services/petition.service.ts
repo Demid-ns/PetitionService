@@ -38,4 +38,8 @@ export class PetitionService {
   public createPetition(petition: Petition): Observable<Petition> {
     return this.http.post<Petition>(`${environment.resApi}/api/petitions/save/`, petition);
   }
+
+  public voteForPetition(id: number): Observable<any> {
+    return this.http.post<any>(`${environment.resApi}/api/petitions/vote/${id}/`, null);
+  }
 }

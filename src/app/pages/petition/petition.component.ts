@@ -85,7 +85,8 @@ export class PetitionComponent implements OnInit {
 
   alreadySupported(): boolean {
     if (this.auth.isAuthenticated()) {
-      const votedUser = this.votedUsers.filter(user => user.id === this.thisUser.id);
+      const votedUser = this.votedUsers.filter(user => user.id === this.thisUser?.id ||
+        user.full_name === this.auth.user?.name);
       if (votedUser.length > 0) {
         return true;
       }

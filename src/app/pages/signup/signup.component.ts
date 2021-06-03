@@ -34,7 +34,6 @@ export class SignupComponent implements OnInit {
       user.email = this.form.get('email')?.value;
       user.first_name = this.form.get('firstName')?.value;
       user.last_name = this.form.get('lastName')?.value;
-      console.log(user);
       this.userService.createUser(user).subscribe(response => {
         this.router.navigate(['/auth']);
       }, error => {

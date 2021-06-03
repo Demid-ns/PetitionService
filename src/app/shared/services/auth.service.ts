@@ -8,6 +8,7 @@ import {User} from '../models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AuthResponse} from '../models/auth_response';
 import {tap} from 'rxjs/operators';
+import {FacebookResponse} from "../models/facebookResponse";
 
 export const SOCIAL_TOKEN_KEY = 'social_access_token';
 export const DEFAULT_TOKEN_KEY = 'default_access_token';
@@ -65,17 +66,22 @@ export class AuthService {
   }
 
   public loginByFacebook(): any {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((respponse) => {
-      console.log(respponse);
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((response) => {
+      const facebookResponse: FacebookResponse = {
+        access_token: response.authToken,
+        provider: response.provider.toLowerCase()
+      };
+      return this.http.post(`${environment.resApi}/api/facebook-auth/`, facebookResponse)
+        .pipe(
+          tap(this.setToken)
+        ).subscribe(() => {
+          this.router.navigate(['dashboard']);
+        });
     });
   }
 
   private setToken(response: AuthResponse): void {
     localStorage.setItem(DEFAULT_TOKEN_KEY, response.access);
-  }
-
-  public getInfo(): void{
-    console.log(this.user.idToken);
   }
 
   // public makeAuthRequest(redirectUri: string): Observable<any> {

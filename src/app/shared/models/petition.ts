@@ -12,4 +12,5 @@ export class Petition {
   // tslint:disable-next-line:variable-name
   vote_count?: number;
   text?: string;
+  status?: string;
 }

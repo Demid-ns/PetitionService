@@ -67,10 +67,10 @@
     <p class="uk-text-lead">Support this petition, it has already get {{this.petition.vote_count}}/200 votes:</p>
     <button class="uk-button uk-button-secondary"
             (click)="supportPetition()"
-            [disabled]="alreadySupported()">Support petition
+            [disabled]="alreadySupported() || buttonLocked()">Support petition
     </button>
     <p *ngIf="alreadySupported()">Sorry, you can't support this petition again</p>
-
+    <p *ngIf="buttonLocked()">Sorry, this petition cannot be supported</p>
   </article>
 
 </div>

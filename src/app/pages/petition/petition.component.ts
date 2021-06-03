@@ -96,4 +96,11 @@ export class PetitionComponent implements OnInit {
     }
     return false;
   }
+
+  buttonLocked(): boolean {
+    if (this.petition.status === 'lock') {
+      return true;
+    }
+    return false;
+  }
 }

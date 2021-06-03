@@ -32,4 +32,4 @@ jobs:
       with:
         app-name: 'petition-bureau'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_47a56d24d79e4756a68153b423e2e78a }}
-        package: .
+        package: ./dist/PetitionService

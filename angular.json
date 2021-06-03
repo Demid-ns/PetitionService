@@ -61,10 +61,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "PS-Client:build",
-            "ssl": true,
-            "sslKey": "ssl/localhost.key",
-            "sslCert": "ssl/localhost.crt"
+            "browserTarget": "PS-Client:build"
           },
           "configurations": {
             "production": {

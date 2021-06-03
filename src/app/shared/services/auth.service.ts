@@ -8,7 +8,7 @@ import {User} from '../models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AuthResponse} from '../models/auth_response';
 import {tap} from 'rxjs/operators';
-import {FacebookResponse} from "../models/facebookResponse";
+import {FacebookResponse} from '../models/facebookResponse';
 
 export const SOCIAL_TOKEN_KEY = 'social_access_token';
 export const DEFAULT_TOKEN_KEY = 'default_access_token';

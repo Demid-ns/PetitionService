@@ -41,8 +41,11 @@ export class PetitionComponent implements OnInit {
     }
 
     this.petitionService.getPetition(this.urlId).subscribe(response => {
-      this.petition = response;
-    });
+        this.petition = response;
+      }, error => {
+        this.router.navigate(['petitions']);
+      }
+    );
 
     this.petitionService.getVotedUsers(this.urlId).subscribe(response => {
       this.votedUsers = response;

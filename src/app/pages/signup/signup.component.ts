@@ -18,12 +18,20 @@ export class SignupComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', [Validators.required, Validators.maxLength(15)]),
     lastName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    confirm: new FormControl('', null),
   });
 
   constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.form.valueChanges.subscribe(field => {
+      if (field.password !== field.confirm) {
+        this.form.get('confirm').setErrors({mismatch: true});
+      } else {
+        this.form.get('confirm').setErrors(null);
+      }
+    });
   }
 
   submit(): void {

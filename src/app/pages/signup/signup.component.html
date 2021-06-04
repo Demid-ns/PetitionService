@@ -127,6 +127,26 @@
         </div>
       </div>
 
+      <div class="uk-margin">
+        <label
+          class="uk-form-label"
+          for="confirm">Confirm password</label>
+        <div class="uk-form-controls">
+          <input
+            class="uk-input" type="password"
+            id="confirm"
+            placeholder="Confirm your password" formControlName="confirm">
+        </div>
+        <div
+          *ngIf="form.get('confirm').invalid && form.get('confirm').touched"
+          class="validation"
+        >
+          <small *ngIf="this.form.get('confirm').hasError('mismatch')">
+            Passwords must match
+          </small>
+        </div>
+      </div>
+
       <ul class="uk-list uk-list-bullet">
         <li *ngFor="let error of errors" class="error"><p>{{error}}</p></li>
       </ul>
